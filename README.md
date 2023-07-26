@@ -46,3 +46,70 @@
     Нужно бросить исключение, если работа с объектом типа счетчик была не в ресурсном try и/или ресурс остался открыт.
     Значение считать в ресурсе try, если при заведения животного заполнены все поля.
 
+### Решение:
+1. Команды bash:
+    
+    ```bash
+    cat > "Домашние животные"
+    Собаки
+    Кошки
+    Хомяки
+    'Ctrl+d'
+    ```
+    ```bash
+    cat > "Вьючные животные"
+    Лошади
+    Верблюды
+    Ослы
+
+    'Ctrl+d'
+    ```
+
+    ```bash
+    cat "Домашние животные" "Вьючные животные" > Animals
+    cat Animals
+    mv "Animals" "Друзья человека"
+    ```
+    
+2. Команды bash:
+    ```bash
+    mkdir final-project
+    mv 'Друзья человека' final-project/
+    cd final-project/
+    ls
+    ```
+3. Команды bash:
+    ```bash
+    sudo apt-get update
+    sudo apt install mysql-server
+    sudo service mysql status
+    ```
+4. Команды bash:
+    ```bash
+    wget http://ftp.us.debian.org/debian/pool/main/s/sl/sl_5.02-1_amd64.deb
+    sudo dpkg -i sl_5.02-1_amd64.deb
+    sudo dpkg -r sl
+    ```
+5. Команды bash:
+    ```bash
+    135  cat > "Домашние животные"
+    136  cat "Домашние животные" "Вьючные животные" > Animals
+    137  cat Animals
+    138  mv Animals "Друзья человека"
+    139  mkdir final-project
+    140  mv Друзья\ человека final-project/
+    141  cd final-project/
+    142  ls
+    143  sudo apt-get update
+    144  sudo apt install mysql-server
+    145  sudo service mysql-server status
+    146  sudo service mysql status
+    147  dpkg --help
+    148  dpkg -l
+    149  wget http://ftp.us.debian.org/debian/pool/main/s/sl/sl_5.02-1_amd64.deb
+    150  sudo dpkg -i sl_5.02-1_amd64.deb
+    151  sudo dpkg -r sl
+    152  history
+    ```
+6. (Добавить схему)
+
