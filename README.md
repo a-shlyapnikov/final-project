@@ -113,3 +113,165 @@
     ```
 6. (Добавить схему)
 
+7. Команды SQL:
+    ```sql
+    CREATE DATABASE Друзья_человка;
+    USE Друзья_человка;
+    ```
+8. Команды SQL:
+    ```sql
+    CREATE TABLE animals (
+        id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        type VARCHAR(50)
+    );
+
+    CREATE TABLE house_animals(
+        id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        type VARCHAR(60), 
+        animal_type INT default 1,
+        FOREIGN KEY (animal_type) REFERENCES animals(id)
+    );
+
+    CREATE TABLE pack_animals(
+        id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        type VARCHAR(60),
+        animal_type INT default 2,
+        FOREIGN KEY (animal_type) REFERENCES animals(id)
+    );
+
+    CREATE TABLE cats (
+        id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        name VARCHAR(50),
+        commands VARCHAR(50),
+        birthday DATE,
+        type_id int default 1,
+        FOREIGN KEY (type_id) REFERENCES house_animals(id)
+    );
+
+    CREATE TABLE dogs (
+        id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        `name` VARCHAR(50),
+        commands VARCHAR(50),
+        birthday DATE,
+        type_id int default 2,
+        FOREIGN KEY (type_id) REFERENCES house_animals(id)
+    );
+
+    CREATE TABLE hamsters (
+        id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        `name` VARCHAR(50),
+        commands VARCHAR(50),
+        birthday DATE,
+        type_id int default 3,
+        FOREIGN KEY (type_id) REFERENCES house_animals(id)
+    );
+
+    CREATE TABLE horses (
+        id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        `name` VARCHAR(50),
+        commands VARCHAR(50),
+        birthday DATE,
+        type_id int default 1,
+        FOREIGN KEY (type_id) REFERENCES pack_animals(id)
+    );
+
+    CREATE TABLE camels (
+        id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        `name` VARCHAR(50),
+        commands VARCHAR(50),
+        birthday DATE,
+        type_id int default 2,
+        FOREIGN KEY (type_id) REFERENCES pack_animals(id)
+    );
+
+    CREATE TABLE donkeys (
+        id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        `name` VARCHAR(50),
+        commands VARCHAR(50),
+        birthday DATE,
+        type_id int default 3,
+        FOREIGN KEY (type_id) REFERENCES pack_animals(id)
+    );
+
+
+    ```
+9. Команды SQL:
+    ```sql
+    INSERT INTO cats ( `name`, commands, birthday)
+    VALUES ('Бурбон', 'Кис-кис', '2021-01-20'),
+        ('Симба', 'Кскс', '2019-03-03');
+
+    INSERT INTO dogs ( `name`, commands, birthday)
+    VALUES ('Рекс', 'Дай лапу', '2019-01-21'),
+        ('Керри', 'Лежать', '2020-03-08');
+
+    INSERT INTO hamsters ( `name`, commands, birthday)
+    VALUES ('Желток', 'Кушать', '2022-01-21'),
+        ('Печенька', 'Домой', '2023-03-08');
+
+    INSERT INTO horses ( `name`, commands, birthday)
+    VALUES ('Спирит', 'Но', '2020-01-21'),
+        ('Вавилон', 'Бррррр', '2022-03-08');  
+
+    INSERT INTO camels ( `name`, commands, birthday)
+    VALUES ('Тимон', 'Вперед, стоп', '2019-02-01'),
+        ('Пубма', 'На месте', '2018-11-12'),
+        ('МолнияМакуин', 'Ждать', '2006-04-05');
+
+    INSERT INTO donkeys ( `name`, commands, birthday)
+    VALUES ('Анатолий', 'Пошёл', '2019-01-21'),
+        ('Кирилл', 'Стой', '2021-03-08');
+
+    ```
+10. Команды SQL:
+    ```sql
+    TRUNCATE TABLE camels;
+    ```
+    ```sql
+    CREATE TABLE horses_and_donkeys AS
+    SELECT * FROM horses
+    UNION
+    SELECT * FROM donkeys;
+
+    ALTER TABLE horses_and_donkeys DROP column id;
+
+    ALTER TABLE horses_and_donkeys ADD id INT NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST;
+    ```
+11. Команды SQL:
+    ```sql
+    CREATE TABLE young_animals
+        SELECT `name`, birthday, commands, type_id
+        FROM cats
+        WHERE YEAR(NOW()) - YEAR(birthday) BETWEEN 1 AND 3
+        UNION
+        SELECT `name`, birthday, commands, type_id
+        FROM dogs
+        WHERE YEAR(NOW()) - YEAR(birthday) BETWEEN 1 AND 3
+        UNION
+        SELECT `name`, birthday, commands, type_id
+        FROM hamsters
+        WHERE YEAR(NOW()) - YEAR(birthday) BETWEEN 1 AND 3
+        UNION
+        SELECT `name`, birthday, commands, type_id
+        FROM horses_and_donkeys
+        WHERE YEAR(NOW()) - YEAR(birthday) BETWEEN 1 AND 3;
+    
+    ALTER TABLE young_animals ADD id INT NOT NULL PRIMARY KEY AUTO_INCREMENT FIRST;
+
+    ALTER TABLE young_animals ADD age VARCHAR(50) DEFAULT (CONCAT(TIMESTAMPDIFF(YEAR, birthday, NOW()), ' year ', TIMESTAMPDIFF(MONTH, birthday, NOW())%12, ' month'));
+
+    ```
+12. Команды SQL:
+    ```sql
+    CREATE TABLE animals_all AS
+    SELECT id, `name`, birthday, commands, type_id FROM dogs
+    UNION ALL
+    SELECT  id, `name`, birthday, commands, type_id FROM cats
+    UNION ALL
+    SELECT id, `name`, birthday, commands, type_id FROM hamsters
+    UNION ALL
+    SELECT id, `name`, birthday, commands, type_id FROM horses
+    UNION ALL
+    SELECT id, `name`, birthday, commands, type_id FROM donkeys;
+    
+    ```
