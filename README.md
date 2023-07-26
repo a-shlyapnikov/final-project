@@ -111,7 +111,7 @@
     151  sudo dpkg -r sl
     152  history
     ```
-6. (Добавить схему)
+6. ![schema](https://github.com/a-shlyapnikov/final-project/blob/main/src/diagram.png)
 
 7. Команды SQL:
     ```sql
