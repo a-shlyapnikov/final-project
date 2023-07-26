@@ -113,7 +113,7 @@
     ```
 6. Cхема:
 
-![schema](https://github.com/a-shlyapnikov/final-project/blob/main/src/diagram.png)
+    ![schema](https://github.com/a-shlyapnikov/final-project/blob/main/src/diagram.png)
 
 7. Команды SQL:
     ```sql
