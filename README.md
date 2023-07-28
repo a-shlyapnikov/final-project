@@ -278,4 +278,4 @@
     
     ```
 
-### Решение заданий 13-15 лежит (тут)[https://github.com/a-shlyapnikov/final-project/tree/main/JavaProject/final-projectGB]
+### Решение заданий 13-15 лежит [тут](https://github.com/a-shlyapnikov/final-project/tree/main/JavaProject/final-projectGB)
