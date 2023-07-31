@@ -38,4 +38,8 @@ public abstract class Animal {
     public String getSubtype() {
         return subtype;
     }
+
+    public List<String> getCommands() {
+        return commands;
+    }
 }
